@@ -19,14 +19,14 @@ const Nav = () =>{
     return(
    <header className="flex-row" style={{justifyContent:"space-between"}}>
         <h2 className="flex">
-            <a href="/">
+            <a data-testid="link" href="/">
                 <span role ="img" aria-label="camera">📸</span>Oh snap    
             </a>
         </h2>
         <nav className="flex">
             <ul className="flex-row">
                 <li className="mx-2">
-                    <a href="#about">About me</a>
+                    <a data-testid="about" href="#about">About me</a>
                 </li>
                 <li>
                     <span>Contact</span>
