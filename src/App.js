@@ -1,11 +1,11 @@
-import React,{useState,useEffect} from 'react';
-import { capitalizeFirstLetter } from './utils/helpers';
-import './App.css';
-import About from'./components/About/index'
-import Gallery from './components/Gallery';
-import Nav from './components/Nav/index'
+import React, { useState, useEffect } from "react";
+import { capitalizeFirstLetter } from "./utils/helpers";
+import "./App.css";
+import About from "./components/About/index";
+import Gallery from "./components/Gallery";
+import Nav from "./components/Nav/index";
+import ContactForm from "./components/Contact";
 function App() {
-
   const [categories] = useState([
     {
       name: "commercial",
@@ -20,21 +20,30 @@ function App() {
     },
   ]);
 
-const [currentCategory,SetCurrentCategory]=useState(categories[0]);
-useEffect(() => {
-  document.title = capitalizeFirstLetter(currentCategory.name);
-}, [currentCategory]);
+  const [currentCategory, SetCurrentCategory] = useState(categories[0]);
+  useEffect(() => {
+    document.title = capitalizeFirstLetter(currentCategory.name);
+  }, [currentCategory]);
+  const [contactSelected, setContactSelected] = useState(false);
   return (
-    <div >
+    <div>
       <Nav
-      categories={categories}
-      SetCurrentCategory={SetCurrentCategory}
-      currentCategory={currentCategory}
+        categories={categories}
+        SetCurrentCategory={SetCurrentCategory}
+        currentCategory={currentCategory}
+        contactSelected={contactSelected}
+        setContactSelected={setContactSelected}
       />
-        <main>
-          <Gallery currentCategory={currentCategory}/>
-          <About />
-        </main>
+      <main>
+        {!contactSelected ? (
+          <>
+            <Gallery currentCategory={currentCategory}></Gallery>
+            <About></About>
+          </>
+        ) : (
+          <ContactForm></ContactForm>
+        )}
+      </main>
     </div>
   );
 }
